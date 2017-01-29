@@ -1,0 +1,95 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+xmlns:tools="http://schemas.android.com/tools"
+android:id="@+id/activity_add_detail"
+android:layout_width="match_parent"
+android:layout_height="match_parent"
+android:paddingBottom="@dimen/activity_vertical_margin"
+android:paddingLeft="@dimen/activity_horizontal_margin"
+android:paddingRight="@dimen/activity_horizontal_margin"
+android:paddingTop="@dimen/activity_vertical_margin"
+android:orientation="vertical"
+tools:context="com.example.hiufungk_sizebook.AddDetail">
+<LinearLayout
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical">
+
+    <EditText android:id="@+id/inputName"
+        android:layout_weight="1"
+        android:layout_width="match_parent"
+        android:layout_height="60dp"
+        android:hint="@string/input_name" />
+
+    <EditText android:id="@+id/inputDate"
+        android:layout_weight="1"
+        android:layout_width="match_parent"
+        android:layout_height="60dp"
+        android:hint="@string/input_date" />
+
+    <EditText android:id="@+id/inputNeck"
+        android:layout_weight="1"
+        android:layout_width="match_parent"
+        android:layout_height="60dp"
+        android:hint="@string/input_neck" />
+
+    <EditText android:id="@+id/inputBust"
+        android:layout_weight="1"
+        android:layout_width="match_parent"
+        android:layout_height="60dp"
+        android:hint="@string/input_bust" />
+
+    <EditText android:id="@+id/inputChest"
+        android:layout_weight="1"
+        android:layout_width="match_parent"
+        android:layout_height="60dp"
+        android:hint="@string/input_chest" />
+
+    <EditText android:id="@+id/inputWaist"
+        android:layout_weight="1"
+        android:layout_width="match_parent"
+        android:layout_height="60dp"
+        android:hint="@string/input_waist" />
+
+    <EditText android:id="@+id/inputHip"
+        android:layout_weight="1"
+        android:layout_width="match_parent"
+        android:layout_height="60dp"
+        android:hint="@string/input_hip" />
+
+    <EditText android:id="@+id/inputInseam"
+        android:layout_weight="1"
+        android:layout_width="match_parent"
+        android:layout_height="60dp"
+        android:hint="@string/input_inseam" />
+
+    <EditText android:id="@+id/inputComment"
+        android:layout_weight="1"
+        android:layout_width="match_parent"
+        android:layout_height="60dp"
+        android:hint="@string/input_comment" />
+
+
+    <Button
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="@string/submit_button"
+        android:layout_alignParentTop="true"
+        android:layout_alignParentRight="true"
+        android:layout_alignParentEnd="true"
+        android:id="@+id/button"
+        android:onClick="submit" />
+
+    <Button
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="@string/delete_button"
+        android:layout_alignParentTop="true"
+        android:layout_alignParentRight="true"
+        android:layout_alignParentEnd="true"
+        android:id="@+id/del_button"
+        android:onClick="delete" />
+</LinearLayout>
+
+</ScrollView>
+
