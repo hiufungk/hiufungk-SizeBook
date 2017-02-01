@@ -165,7 +165,7 @@ public class PersonInfo {
                 Double waistNum = Double.parseDouble(waistStr);
                 //taken from http://stackoverflow.com/questions/153724/how-to-round-a-number-to-n-decimal-places-in-java
                 ////2017-01-28 16:42
-                this.bust = (double) Math.round(waistNum * 10d) / 10d;
+                this.waist = (double) Math.round(waistNum * 10d) / 10d;
             }
         }catch (NumberFormatException e){
             throw new InputNumberException();
@@ -179,7 +179,7 @@ public class PersonInfo {
                 Double hipNum = Double.parseDouble(hipStr);
                 //taken from http://stackoverflow.com/questions/153724/how-to-round-a-number-to-n-decimal-places-in-java
                 ////2017-01-28 16:42
-                this.bust = (double) Math.round(hipNum * 10d) / 10d;
+                this.hip = (double) Math.round(hipNum * 10d) / 10d;
             }
         }catch (NumberFormatException e){
             throw new InputNumberException();
@@ -193,7 +193,7 @@ public class PersonInfo {
                 Double inseamNum = Double.parseDouble(inseamStr);
                 //taken from http://stackoverflow.com/questions/153724/how-to-round-a-number-to-n-decimal-places-in-java
                 ////2017-01-28 16:42
-                this.bust = (double) Math.round(inseamNum * 10d) / 10d;
+                this.inseam = (double) Math.round(inseamNum * 10d) / 10d;
             }
         }catch (NumberFormatException e){
             throw new InputNumberException();
