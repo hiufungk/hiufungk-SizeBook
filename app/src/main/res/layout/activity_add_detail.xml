@@ -15,6 +15,7 @@ tools:context="com.example.hiufungk_sizebook.AddDetail">
     android:layout_height="match_parent"
     android:orientation="vertical">
 
+    <!-- http://stackoverflow.com/questions/5174481/android-edittext-done-instead-of-enter-or-word-wrap-instead-of-multi-line !-->
     <EditText android:id="@+id/inputName"
         android:layout_weight="1"
         android:layout_width="match_parent"
