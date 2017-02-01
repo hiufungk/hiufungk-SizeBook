@@ -68,7 +68,51 @@ public class PersonInfo {
         this.name = name;
     }
 
-    public void setDate(String date) { this.date = date; }
+    public void setDate(String date) throws InputDateException {
+
+        try {
+            if (date.length() != 0) {
+                String[] parts;
+                if (date.contains("-")) {
+                    parts = date.split("-");
+                }else{
+                    throw new InputDateException();
+                }
+                //yyyy-mm-dd
+                Integer year = Integer.parseInt(parts[0]);
+                Log.d("myTag", "year is: " + year);
+                Integer month = Integer.parseInt(parts[1]);
+                Integer day = Integer.parseInt(parts[2]);
+                if ((year < 1900) || (year > 9999)) {
+                    throw new InputDateException();
+                }
+                if ((month < 1) || (month > 12)) {
+                    throw new InputDateException();
+                }
+
+                if (month == 2) {//feb
+                    if ((day < 1) || (day > 29)) {
+                        throw new InputDateException();
+                    }
+                } else if (month % 2 == 0) { //even
+                    if ((day < 1) || (day > 30)) {
+                        throw new InputDateException();
+                    }
+                } else if (month % 2 == 1) { //odd
+                    if ((day < 1) || (day > 31)) {
+                        throw new InputDateException();
+                    }
+                }
+
+                this.date = date;
+            }
+
+        }catch (NullPointerException e){
+            throw new InputDateException();
+        }catch (NumberFormatException e){
+            throw new InputDateException();
+        }
+    }
 
     public void setNeck(String neckStr) throws InputNumberException {
         try {

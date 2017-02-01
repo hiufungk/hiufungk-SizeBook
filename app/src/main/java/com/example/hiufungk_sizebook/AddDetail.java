@@ -55,6 +55,9 @@ public class AddDetail extends AppCompatActivity {
                 Toast.makeText(context, "Create Entry fail. Must input name", duration).show();
             }else {
                 personInfo = new PersonInfo(name);
+
+                currentInput = "date ";
+                personInfo.setDate(dateText.getText().toString());
                 /*
                 String date = (dateText.getText().toString());
                 Log.d("myTag", "date is: "+date);
@@ -131,8 +134,13 @@ public class AddDetail extends AppCompatActivity {
             Log.d("myTag", currentInput+"exception");
             Toast.makeText(context, "Create Entry fail. "+currentInput+" value must be a positive number", duration).show();
             e.printStackTrace();
-    }
-
+        }  catch (InputDateException e) {
+            Context context = getApplicationContext();
+            int duration = Toast.LENGTH_SHORT;
+            Log.d("myTag", "date exception");
+            Toast.makeText(context, "Create Entry fail. Date is not valid", duration).show();
+            e.printStackTrace();
+        }
 
         Intent intent = new Intent(this, MainActivity.class);
         startActivity(intent);
