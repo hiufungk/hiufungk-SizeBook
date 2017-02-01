@@ -141,9 +141,10 @@ public class AddDetail extends AppCompatActivity {
             Toast.makeText(context, "Create Entry fail. Date is not valid", duration).show();
             e.printStackTrace();
         }
-
+        finish();
+        /*
         Intent intent = new Intent(this, MainActivity.class);
-        startActivity(intent);
+        startActivity(intent);*/
     }
 
     public void delete(View view) {
