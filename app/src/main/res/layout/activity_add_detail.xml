@@ -19,49 +19,57 @@ tools:context="com.example.hiufungk_sizebook.AddDetail">
         android:layout_weight="1"
         android:layout_width="match_parent"
         android:layout_height="60dp"
-        android:hint="@string/input_name" />
+        android:hint="@string/input_name"
+        android:inputType="textEmailAddress|textEmailSubject"/>
 
     <EditText android:id="@+id/inputDate"
         android:layout_weight="1"
         android:layout_width="match_parent"
         android:layout_height="60dp"
-        android:hint="@string/input_date" />
+        android:hint="@string/input_date"
+        android:inputType="textEmailAddress|textEmailSubject"/>
 
     <EditText android:id="@+id/inputNeck"
         android:layout_weight="1"
         android:layout_width="match_parent"
         android:layout_height="60dp"
-        android:hint="@string/input_neck" />
+        android:hint="@string/input_neck"
+        android:inputType="textEmailAddress|textEmailSubject"/>
 
     <EditText android:id="@+id/inputBust"
         android:layout_weight="1"
         android:layout_width="match_parent"
         android:layout_height="60dp"
-        android:hint="@string/input_bust" />
+        android:hint="@string/input_bust"
+        android:inputType="textEmailAddress|textEmailSubject"/>
 
     <EditText android:id="@+id/inputChest"
         android:layout_weight="1"
         android:layout_width="match_parent"
         android:layout_height="60dp"
-        android:hint="@string/input_chest" />
+        android:hint="@string/input_chest"
+        android:inputType="textEmailAddress|textEmailSubject"/>
 
     <EditText android:id="@+id/inputWaist"
         android:layout_weight="1"
         android:layout_width="match_parent"
         android:layout_height="60dp"
-        android:hint="@string/input_waist" />
+        android:hint="@string/input_waist"
+        android:inputType="textEmailAddress|textEmailSubject"/>
 
     <EditText android:id="@+id/inputHip"
         android:layout_weight="1"
         android:layout_width="match_parent"
         android:layout_height="60dp"
-        android:hint="@string/input_hip" />
+        android:hint="@string/input_hip"
+        android:inputType="textEmailAddress|textEmailSubject"/>
 
     <EditText android:id="@+id/inputInseam"
         android:layout_weight="1"
         android:layout_width="match_parent"
         android:layout_height="60dp"
-        android:hint="@string/input_inseam" />
+        android:hint="@string/input_inseam"
+        android:inputType="textEmailAddress|textEmailSubject"/>
 
     <EditText android:id="@+id/inputComment"
         android:layout_weight="1"
