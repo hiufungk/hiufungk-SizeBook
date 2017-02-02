@@ -11,6 +11,12 @@
     android:orientation="vertical"
     tools:context="com.example.hiufungk_sizebook.MainActivity">
 
+    <TextView
+        android:id="@+id/hello"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:text="@string/info_count" />
+
     <Button
         android:layout_width="match_parent"
         android:layout_height="wrap_content"

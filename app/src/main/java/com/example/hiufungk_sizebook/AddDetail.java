@@ -27,7 +27,6 @@ import java.util.Date;
 
 public class AddDetail extends AppCompatActivity {
 
-    //private ArrayList<PersonInfo> infoList;
     private EditText nameText, dateText, neckText, bustText, chestText, waistText, hipText, inseamText, commentText;
     private PersonInfo personInfo = null;
     private String currentInput = "not set";
@@ -90,10 +89,13 @@ public class AddDetail extends AppCompatActivity {
                 Log.d("myTag", "name from obj is: "+personInfo.getName());
                 Log.d("myTag", "create obj success");
                 Toast.makeText(context, "Create Entry success", duration).show();
+
+                loadFromFile();
+                infoArrayList.add(personInfo);
                 saveInFile();
             }
 
-            //infoList.add(personInfo);
+
         } catch (NullPointerException e) { //idk about this exception lol
             Log.d("myTag", "exception");
             e.printStackTrace();
@@ -123,7 +125,7 @@ public class AddDetail extends AppCompatActivity {
             BufferedWriter out = new BufferedWriter(new OutputStreamWriter(fos));
 
             Gson gson = new Gson();
-            gson.toJson(personInfo, out);
+            gson.toJson(infoArrayList, out);
             out.flush();
             Log.d("myTag","saveInFile Done");
             fos.close();
@@ -135,6 +137,7 @@ public class AddDetail extends AppCompatActivity {
         }
     }
 
+    //store info from file to infoArrayList
     private void loadFromFile() {
         try {
             FileInputStream fis = openFileInput("file.sav");
@@ -146,12 +149,12 @@ public class AddDetail extends AppCompatActivity {
             //Taken from http://stackoverflow.com/questions/12384064/gson-convert-from-json-to-a-typed-arraylistt
             //2017-01-24 18:19
             Type listType = new TypeToken<ArrayList<PersonInfo>>(){}.getType();
-            Log.d("myTag",listType.toString());
             infoArrayList = gson.fromJson(in, listType);
-            Log.d("myTag","wtf");
 
         } catch (FileNotFoundException e) {
+            Log.d("myTag","FileNotFoundException here");
             infoArrayList = new ArrayList<PersonInfo>();
         }
     }
+
 }

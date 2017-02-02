@@ -28,7 +28,7 @@ public class MainActivity extends AppCompatActivity {
     //private static final String FILENAME = "file.sav";
 
     private ListView oldInfoList;
-    private ArrayList<PersonInfo> infoArrayList = new ArrayList<PersonInfo>();
+    private ArrayList<PersonInfo> infoArrayList;
 
     private ArrayAdapter<PersonInfo> adapter;
 
@@ -39,27 +39,6 @@ public class MainActivity extends AppCompatActivity {
 
         oldInfoList = (ListView) findViewById(R.id.InfoList);
         registerForContextMenu(oldInfoList);
-        try {
-            PersonInfo p1 = new PersonInfo("Pen");
-            PersonInfo p2 = new PersonInfo("Pineapple");
-
-            p2.setBust("20");
-
-            PersonInfo p3 = new PersonInfo("Apple");
-            PersonInfo p4 = new PersonInfo("Pen");
-            p3.setInseam("12.345");
-            p3.setWaist("2.5");
-            p3.setBust("9.75");
-            p3.setHip("11.12");
-            infoArrayList.add(p1);
-            infoArrayList.add(p2);
-            infoArrayList.add(p3);
-            infoArrayList.add(p4);
-
-        } catch (InputNumberException e) {
-            e.printStackTrace();
-        }
-
 
     }
 
@@ -92,9 +71,11 @@ public class MainActivity extends AppCompatActivity {
     protected void onStart() {
         // TODO Auto-generated method stub
         super.onStart();
-        //loadFromFile();
-
+        loadFromFile();
+        //Log.d("myTag","before:"+adapter.toString());
         adapter = new ArrayAdapter<PersonInfo>(this, R.layout.list_item, infoArrayList); //view,dataArray
+        Log.d("myTag",adapter.toString());
+        Log.d("myTag",oldInfoList.toString());
         oldInfoList.setAdapter(adapter);
     }
 
@@ -109,19 +90,17 @@ public class MainActivity extends AppCompatActivity {
     private void loadFromFile() {
         try {
             FileInputStream fis = openFileInput("file.sav");
-            Log.d("myTag",fis.toString());
             BufferedReader in = new BufferedReader(new InputStreamReader(fis));
-            Log.d("myTag",in.toString());
             Gson gson = new Gson();
 
             //Taken from http://stackoverflow.com/questions/12384064/gson-convert-from-json-to-a-typed-arraylistt
             //2017-01-24 18:19
             Type listType = new TypeToken<ArrayList<PersonInfo>>(){}.getType();
-            Log.d("myTag",listType.toString());
+
             infoArrayList = gson.fromJson(in, listType);
-            Log.d("myTag","wtf");
 
         } catch (FileNotFoundException e) {
+            Log.d("myTag","FileNotFoundException here");
             infoArrayList = new ArrayList<PersonInfo>();
         }
     }

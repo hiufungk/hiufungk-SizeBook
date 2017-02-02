@@ -13,5 +13,6 @@
     <string name="input_comment">Comment</string>
     <string name="submit_button">Submit</string>
     <string name="delete_button">Delete</string>
+    <string name="info_count">Number of records: </string>
 
 </resources>
