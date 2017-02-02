@@ -31,6 +31,8 @@ public class AddDetail extends AppCompatActivity {
     private PersonInfo personInfo = null;
     private String currentInput = "not set";
     private ArrayList<PersonInfo> infoArrayList;
+    private int edit_mode = 0; //0= create new, 1=edit
+    private int pos; //index of element for edit
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -53,8 +55,11 @@ public class AddDetail extends AppCompatActivity {
         Log.d("myTag","add detail on start");
         Intent intent = getIntent();
         Bundle bundle = intent.getExtras();
+        edit_mode = 0;
         if (bundle != null){
+            edit_mode = 1; //turn on edit mode
             Log.d("myTag",bundle.toString());
+            pos = bundle.getInt("current_pos");
             String name_string = bundle.getString("current_name");
             String date_string = bundle.getString("current_date");
             String comment_string = bundle.getString("current_comment");
@@ -87,7 +92,6 @@ public class AddDetail extends AppCompatActivity {
                 inseamText.setText(bundle.getString("current_inseam"));
             }
         }
-
 
     }
 
@@ -135,7 +139,11 @@ public class AddDetail extends AppCompatActivity {
                 Toast.makeText(context, "Create Entry success", duration).show();
 
                 loadFromFile();
-                infoArrayList.add(personInfo);
+                if (edit_mode == 0) {
+                    infoArrayList.add(personInfo);
+                }else {
+                    infoArrayList.set(pos, personInfo);
+                }
                 saveInFile();
             }
 

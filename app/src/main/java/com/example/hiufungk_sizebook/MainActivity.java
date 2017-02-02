@@ -79,6 +79,7 @@ public class MainActivity extends AppCompatActivity {
                 PersonInfo selected = infoArrayList.get(info.position);
                 Log.d("myTag","selected: "+selected.getName());
 
+                bundle.putInt("current_pos",info.position);
                 bundle.putString("current_name",selected.getName());
                 bundle.putString("current_date",selected.getDate());
                 bundle.putString("current_neck",String.valueOf(selected.getNeck()));

@@ -227,7 +227,9 @@ public class PersonInfo {
     @Override
     public String toString(){
         String outStr = "Name: "+this.name;
-
+        if (this.neck > 0){
+            outStr += "\nNeck: "+this.neck;
+        }
         if (this.bust > 0){
             outStr += "\nBust: "+this.bust;
         }
