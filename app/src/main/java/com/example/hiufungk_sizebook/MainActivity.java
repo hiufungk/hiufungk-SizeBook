@@ -86,6 +86,7 @@ public class MainActivity extends AppCompatActivity {
                 bundle.putString("current_chest",String.valueOf(selected.getChest()));
                 bundle.putString("current_waist",String.valueOf(selected.getWaist()));
                 bundle.putString("current_hip",String.valueOf(selected.getHip()));
+                bundle.putString("current_inseam",String.valueOf(selected.getInseam()));
                 bundle.putString("current_comment",selected.getComment());
 
                 intent.putExtras(bundle);

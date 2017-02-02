@@ -45,7 +45,7 @@ public class AddDetail extends AppCompatActivity {
         inseamText = (EditText) findViewById(R.id.inputInseam);
         commentText = (EditText) findViewById(R.id.inputComment);
     }
-/*
+
     protected void onStart(){
         super.onStart();
         //String test = "testing name";
@@ -57,18 +57,40 @@ public class AddDetail extends AppCompatActivity {
             Log.d("myTag",bundle.toString());
             String name_string = bundle.getString("current_name");
             String date_string = bundle.getString("current_date");
+            String comment_string = bundle.getString("current_comment");
             nameText.setText(name_string);
             dateText.setText(date_string);
+            commentText.setText(comment_string);
 
-            String neck_string = bundle.getString("current_neck");
-            Log.d("mytag","edit neck:" neck_string);
 
-            //bustText.setText(bust_string);
+            if (Double.parseDouble(bundle.getString("current_neck")) > 0) {
+                neckText.setText(bundle.getString("current_neck"));
+            }
+
+            if (Double.parseDouble(bundle.getString("current_bust")) > 0) {
+                bustText.setText(bundle.getString("current_bust"));
+            }
+
+            if (Double.parseDouble(bundle.getString("current_chest")) > 0) {
+                chestText.setText(bundle.getString("current_chest"));
+            }
+
+            if (Double.parseDouble(bundle.getString("current_waist")) > 0) {
+                waistText.setText(bundle.getString("current_waist"));
+            }
+
+            if (Double.parseDouble(bundle.getString("current_hip")) > 0) {
+                hipText.setText(bundle.getString("current_hip"));
+            }
+
+            if (Double.parseDouble(bundle.getString("current_inseam")) > 0) {
+                inseamText.setText(bundle.getString("current_inseam"));
+            }
         }
 
 
     }
-*/
+
     public void submit(View view) {
 
         try {
