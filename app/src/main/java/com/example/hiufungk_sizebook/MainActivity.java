@@ -75,6 +75,8 @@ public class MainActivity extends AppCompatActivity {
                 //http://stackoverflow.com/questions/8452526/android-can-i-use-putextra-to-pass-multiple-values
                 Log.d("myTag","edit case");
                 Intent intent = new Intent(this, AddDetail.class);
+
+                /*
                 Bundle bundle = new Bundle();
                 PersonInfo selected = infoArrayList.get(info.position);
                 Log.d("myTag","selected: "+selected.getName());
@@ -89,6 +91,11 @@ public class MainActivity extends AppCompatActivity {
                 bundle.putString("current_hip",String.valueOf(selected.getHip()));
                 bundle.putString("current_inseam",String.valueOf(selected.getInseam()));
                 bundle.putString("current_comment",selected.getComment());
+                */
+
+                PersonInfo selected = infoArrayList.get(info.position);
+                Bundle bundle = selected.toBundle();
+                bundle.putInt("current_pos",info.position);
 
                 intent.putExtras(bundle);
                 startActivity(intent);
@@ -97,6 +104,8 @@ public class MainActivity extends AppCompatActivity {
         }
         //return super.onContextItemSelected(item);
     }
+
+
 
     @Override
     protected void onStart() {

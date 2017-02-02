@@ -1,5 +1,6 @@
 package com.example.hiufungk_sizebook;
 
+import android.os.Bundle;
 import android.util.Log;
 import android.widget.EditText;
 
@@ -247,5 +248,19 @@ public class PersonInfo {
         }
 
         return outStr;
+    }
+
+    public Bundle toBundle(){
+        Bundle bundle = new Bundle();
+        bundle.putString("current_name",this.getName());
+        bundle.putString("current_date",this.getDate());
+        bundle.putString("current_neck",String.valueOf(this.getNeck()));
+        bundle.putString("current_bust",String.valueOf(this.getBust()));
+        bundle.putString("current_chest",String.valueOf(this.getChest()));
+        bundle.putString("current_waist",String.valueOf(this.getWaist()));
+        bundle.putString("current_hip",String.valueOf(this.getHip()));
+        bundle.putString("current_inseam",String.valueOf(this.getInseam()));
+        bundle.putString("current_comment",this.getComment());
+        return bundle;
     }
 }
