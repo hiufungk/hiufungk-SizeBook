@@ -44,9 +44,31 @@ public class AddDetail extends AppCompatActivity {
         hipText = (EditText) findViewById(R.id.inputHip);
         inseamText = (EditText) findViewById(R.id.inputInseam);
         commentText = (EditText) findViewById(R.id.inputComment);
+    }
+/*
+    protected void onStart(){
+        super.onStart();
+        //String test = "testing name";
+        //nameText.setText(test);
+        Log.d("myTag","add detail on start");
+        Intent intent = getIntent();
+        Bundle bundle = intent.getExtras();
+        if (bundle != null){
+            Log.d("myTag",bundle.toString());
+            String name_string = bundle.getString("current_name");
+            String date_string = bundle.getString("current_date");
+            nameText.setText(name_string);
+            dateText.setText(date_string);
+
+            String neck_string = bundle.getString("current_neck");
+            Log.d("mytag","edit neck:" neck_string);
+
+            //bustText.setText(bust_string);
+        }
+
 
     }
-
+*/
     public void submit(View view) {
 
         try {

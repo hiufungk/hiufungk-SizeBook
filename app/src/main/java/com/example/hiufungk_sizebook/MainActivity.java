@@ -72,7 +72,24 @@ public class MainActivity extends AppCompatActivity {
                 countText.setText(String.format ("%d", size));
                 return true;
             case R.id.edit_id:
-                //todo edit
+                //http://stackoverflow.com/questions/8452526/android-can-i-use-putextra-to-pass-multiple-values
+                Log.d("myTag","edit case");
+                Intent intent = new Intent(this, AddDetail.class);
+                Bundle bundle = new Bundle();
+                PersonInfo selected = infoArrayList.get(info.position);
+                Log.d("myTag","selected: "+selected.getName());
+
+                bundle.putString("current_name",selected.getName());
+                bundle.putString("current_date",selected.getDate());
+                bundle.putString("current_neck",String.valueOf(selected.getNeck()));
+                bundle.putString("current_bust",String.valueOf(selected.getBust()));
+                bundle.putString("current_chest",String.valueOf(selected.getChest()));
+                bundle.putString("current_waist",String.valueOf(selected.getWaist()));
+                bundle.putString("current_hip",String.valueOf(selected.getHip()));
+                bundle.putString("current_comment",selected.getComment());
+
+                intent.putExtras(bundle);
+                startActivity(intent);
             default:
                 return super.onContextItemSelected(item);
         }
@@ -89,8 +106,8 @@ public class MainActivity extends AppCompatActivity {
         Integer size = infoArrayList.size();
         countText.setText(String.format ("%d", size));
         adapter = new ArrayAdapter<PersonInfo>(this, R.layout.list_item, infoArrayList); //view,dataArray
-        Log.d("myTag",adapter.toString());
-        Log.d("myTag",oldInfoList.toString());
+        //Log.d("myTag",adapter.toString());
+        //Log.d("myTag",oldInfoList.toString());
         oldInfoList.setAdapter(adapter);
     }
 
