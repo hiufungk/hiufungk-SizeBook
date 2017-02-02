@@ -10,25 +10,37 @@
     android:paddingTop="@dimen/activity_vertical_margin"
     android:orientation="vertical"
     tools:context="com.example.hiufungk_sizebook.MainActivity">
-
-    <TextView
-        android:id="@+id/info_count_word"
-        android:layout_width="fill_parent"
+    <LinearLayout
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="@string/info_count_word" />
+        android:orientation="horizontal">
+        <TextView
+            android:id="@+id/info_count_word"
+            android:layout_width="186dp"
+            android:layout_height="wrap_content"
+            android:text="@string/info_count_word"
+            android:textSize="20sp"/>
 
-    <TextView
-        android:id="@+id/info_count"
-        android:layout_width="fill_parent"
-        android:layout_height="wrap_content"
-        android:text="@string/info_count" />
-
+        <TextView
+            android:id="@+id/info_count"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/info_count"
+            android:textSize="20sp"/>
+    </LinearLayout>
     <Button
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:text="@string/add_button"
         android:id="@+id/button"
         android:onClick="addEntry" />
+
+    <Button
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="@string/clear_button"
+        android:id="@+id/clear_button"
+        android:onClick="clearAll" />
 
     <ListView
         android:id="@+id/InfoList"

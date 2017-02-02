@@ -12,8 +12,8 @@
     <string name="input_inseam">Inseam size (length in inches)</string>
     <string name="input_comment">Comment</string>
     <string name="submit_button">Submit</string>
-    <string name="delete_button">Delete</string>
-    <string name="info_count_word">Number of records: </string>
+    <string name="clear_button">Clear All</string>
+    <string name="info_count_word">Number of records:   </string>
     <string name="info_count">1234</string>
 
 </resources>

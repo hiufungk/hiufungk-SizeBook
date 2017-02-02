@@ -120,6 +120,16 @@ public class MainActivity extends AppCompatActivity {
         startActivity(intent);
     }
 
+    public void clearAll(View view) {
+        infoArrayList.clear();
+        adapter = new ArrayAdapter<PersonInfo>(this, R.layout.list_item, infoArrayList);
+        oldInfoList.setAdapter(adapter);
+        TextView countText = (TextView) findViewById(R.id.info_count);
+        Integer size = infoArrayList.size();
+        countText.setText(String.format ("%d", size));
+        saveInFile();
+    }
+
 
     private void loadFromFile() {
         try {
