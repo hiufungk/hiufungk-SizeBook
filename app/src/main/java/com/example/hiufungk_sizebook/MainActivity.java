@@ -1,25 +1,32 @@
 package com.example.hiufungk_sizebook;
 
+import android.content.Context;
 import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.ContextMenu;
+import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
+import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.EditText;
 import android.widget.ListView;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.google.gson.Gson;
 import com.google.gson.reflect.TypeToken;
 
 import java.io.BufferedReader;
+import java.io.BufferedWriter;
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
+import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.InputStreamReader;
+import java.io.OutputStreamWriter;
 import java.lang.reflect.Type;
 import java.util.ArrayList;
 
@@ -42,37 +49,45 @@ public class MainActivity extends AppCompatActivity {
 
     }
 
-    //http://www.compiletimeerror.com/2013/09/context-menu-in-android-with-example.html#.WJJ2eVMrKpo
     @Override
     public void onCreateContextMenu(ContextMenu menu, View v,
                                     ContextMenu.ContextMenuInfo menuInfo) {
         super.onCreateContextMenu(menu, v, menuInfo);
-        menu.setHeaderTitle("Context Menu");
-        menu.add(0, v.getId(), 0, "Action 1");
-        menu.add(0, v.getId(), 0, "Action 2");
-        menu.add(0, v.getId(), 0, "Action 3");
+        MenuInflater inflater = getMenuInflater();
+        inflater.inflate(R.menu.context_menu, menu);
     }
 
+    //https://www.youtube.com/watch?v=Pq9YQl0nfEk
     @Override
     public boolean onContextItemSelected(MenuItem item) {
-        if (item.getTitle() == "Action 1") {
-            Toast.makeText(this, "Action 1 invoked", Toast.LENGTH_SHORT).show();
-            //Log.d("myTag", "selected: "+ item.toString());
-        } else if (item.getTitle() == "Action 2") {
-            Toast.makeText(this, "Action 2 invoked", Toast.LENGTH_SHORT).show();
-        } else if (item.getTitle() == "Action 3") {
-            Toast.makeText(this, "Action 3 invoked", Toast.LENGTH_SHORT).show();
-        } else {
-            return false;
+        AdapterView.AdapterContextMenuInfo info = (AdapterView.AdapterContextMenuInfo) item.getMenuInfo();
+        switch(item.getItemId()){
+            case R.id.delete_id:
+                infoArrayList.remove(info.position);
+                adapter.notifyDataSetChanged();
+                saveInFile();
+                //update count
+                TextView countText = (TextView) findViewById(R.id.info_count);
+                Integer size = infoArrayList.size();
+                countText.setText(String.format ("%d", size));
+                return true;
+            case R.id.edit_id:
+                //todo edit
+            default:
+                return super.onContextItemSelected(item);
         }
-        return true;
+        //return super.onContextItemSelected(item);
     }
+
     @Override
     protected void onStart() {
         // TODO Auto-generated method stub
         super.onStart();
         loadFromFile();
         //Log.d("myTag","before:"+adapter.toString());
+        TextView countText = (TextView) findViewById(R.id.info_count);
+        Integer size = infoArrayList.size();
+        countText.setText(String.format ("%d", size));
         adapter = new ArrayAdapter<PersonInfo>(this, R.layout.list_item, infoArrayList); //view,dataArray
         Log.d("myTag",adapter.toString());
         Log.d("myTag",oldInfoList.toString());
@@ -102,6 +117,24 @@ public class MainActivity extends AppCompatActivity {
         } catch (FileNotFoundException e) {
             Log.d("myTag","FileNotFoundException here");
             infoArrayList = new ArrayList<PersonInfo>();
+        }
+    }
+
+    private void saveInFile() {
+        try {
+            FileOutputStream fos = openFileOutput("file.sav", Context.MODE_PRIVATE);
+            BufferedWriter out = new BufferedWriter(new OutputStreamWriter(fos));
+
+            Gson gson = new Gson();
+            gson.toJson(infoArrayList, out);
+            out.flush();
+            Log.d("myTag","saveInFile Done");
+            fos.close();
+        } catch (FileNotFoundException e) {
+            // TODO: Handle the Exception properly later
+            throw new RuntimeException();
+        } catch (IOException e) {
+            e.printStackTrace();
         }
     }
 
