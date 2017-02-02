@@ -5,6 +5,8 @@ import android.widget.EditText;
 
 import java.util.Date;
 
+import static java.sql.Types.NULL;
+
 /**
  * Created by Kevin on 26-Jan-17.
  */
@@ -12,17 +14,16 @@ import java.util.Date;
 public class PersonInfo {
     private String name;
     private String date; //yyyy-mm-dd
-    private Double neck;
-    private Double bust;
-    private Double chest;
-    private Double waist;
-    private Double hip;
-    private Double inseam;
+    private Double neck = 0.0;
+    private Double bust = 0.0;
+    private Double chest = 0.0;
+    private Double waist = 0.0;
+    private Double hip = 0.0;
+    private Double inseam = 0.0;
     private String comment;
 
     //constructor
     public PersonInfo(String name) {
-
         this.name = name;
     }
 
@@ -119,6 +120,9 @@ public class PersonInfo {
             if (neckStr.length() != 0) {
 
                 Double neckNum = Double.parseDouble(neckStr);
+                if (neckNum < 0){
+                    throw new InputNumberException();
+                }
                 //taken from http://stackoverflow.com/questions/153724/how-to-round-a-number-to-n-decimal-places-in-java
                 ////2017-01-28 16:42
                 this.neck = (double) Math.round(neckNum * 10d) / 10d;
@@ -136,6 +140,9 @@ public class PersonInfo {
                 Double bustNum = Double.parseDouble(bustStr);
                 //taken from http://stackoverflow.com/questions/153724/how-to-round-a-number-to-n-decimal-places-in-java
                 ////2017-01-28 16:42
+                if (bustNum < 0){
+                    throw new InputNumberException();
+                }
                 this.bust = (double) Math.round(bustNum * 10d) / 10d;
             }
         }catch (NumberFormatException e){
@@ -149,6 +156,9 @@ public class PersonInfo {
             if (chestStr.length() != 0) {
 
                 Double chestNum = Double.parseDouble(chestStr);
+                if (chestNum < 0){
+                    throw new InputNumberException();
+                }
                 //taken from http://stackoverflow.com/questions/153724/how-to-round-a-number-to-n-decimal-places-in-java
                 ////2017-01-28 16:42
                 this.chest = (double) Math.round(chestNum * 10d) / 10d;
@@ -163,6 +173,9 @@ public class PersonInfo {
             if (waistStr.length() != 0) {
 
                 Double waistNum = Double.parseDouble(waistStr);
+                if (waistNum < 0){
+                    throw new InputNumberException();
+                }
                 //taken from http://stackoverflow.com/questions/153724/how-to-round-a-number-to-n-decimal-places-in-java
                 ////2017-01-28 16:42
                 this.waist = (double) Math.round(waistNum * 10d) / 10d;
@@ -177,6 +190,9 @@ public class PersonInfo {
             if (hipStr.length() != 0) {
 
                 Double hipNum = Double.parseDouble(hipStr);
+                if (hipNum < 0){
+                    throw new InputNumberException();
+                }
                 //taken from http://stackoverflow.com/questions/153724/how-to-round-a-number-to-n-decimal-places-in-java
                 ////2017-01-28 16:42
                 this.hip = (double) Math.round(hipNum * 10d) / 10d;
@@ -191,6 +207,9 @@ public class PersonInfo {
             if (inseamStr.length() != 0) {
 
                 Double inseamNum = Double.parseDouble(inseamStr);
+                if (inseamNum < 0){
+                    throw new InputNumberException();
+                }
                 //taken from http://stackoverflow.com/questions/153724/how-to-round-a-number-to-n-decimal-places-in-java
                 ////2017-01-28 16:42
                 this.inseam = (double) Math.round(inseamNum * 10d) / 10d;
@@ -202,5 +221,29 @@ public class PersonInfo {
 
     public void setComment(String comment) {
         this.comment = comment;
+    }
+
+
+    @Override
+    public String toString(){
+        String outStr = "Name: "+this.name;
+
+        if (this.bust > 0){
+            outStr += "\nBust: "+this.bust;
+        }
+        if (this.chest > 0){
+            outStr += "\nChest: "+this.chest;
+        }
+        if (this.waist > 0){
+            outStr += "\nWaist: "+this.waist;
+        }
+        if (this.inseam > 0){
+            outStr += "\nInseam: "+this.inseam;
+        }
+        if (this.hip > 0){
+            outStr += "\nHip: "+this.hip;
+        }
+
+        return outStr;
     }
 }

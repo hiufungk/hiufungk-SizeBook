@@ -10,12 +10,17 @@ import android.widget.EditText;
 import android.widget.Toast;
 
 import com.google.gson.Gson;
+import com.google.gson.reflect.TypeToken;
 
+import java.io.BufferedReader;
 import java.io.BufferedWriter;
+import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
 import java.io.IOException;
+import java.io.InputStreamReader;
 import java.io.OutputStreamWriter;
+import java.lang.reflect.Type;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
@@ -26,6 +31,7 @@ public class AddDetail extends AppCompatActivity {
     private EditText nameText, dateText, neckText, bustText, chestText, waistText, hipText, inseamText, commentText;
     private PersonInfo personInfo = null;
     private String currentInput = "not set";
+    private ArrayList<PersonInfo> infoArrayList;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -58,44 +64,7 @@ public class AddDetail extends AppCompatActivity {
 
                 currentInput = "date ";
                 personInfo.setDate(dateText.getText().toString());
-                /*
-                String date = (dateText.getText().toString());
-                Log.d("myTag", "date is: "+date);
-                if (date.length() != 0) {
-                    currentInput = "date ";
-                    String[] parts = date.split("-");
-                    //yyyy-mm-dd
-                    Integer year = Integer.parseInt(parts[0]);
-                    Log.d("myTag", "year is: "+year);
-                    Integer month = Integer.parseInt(parts[1]);
-                    Integer day = Integer.parseInt(parts[2]);
-                    if ((1900 < year) && (year < 9999)){
-                        Log.d("myTag", "year ok");
-                        if ((1 <= month) && (month <= 12)){
-                            Log.d("myTag", "month ok");
-                            if (month == 2){//feb
-                                if ((1 <= day) && (day <= 29)){
-                                    Log.d("myTag", "feb ok");
-                                    personInfo.setDate(date);
-                                }
-                            }else if (month % 2 == 0) {//even
-                                if ((1 <= day) && (day <= 30)){
-                                    Log.d("myTag", "even ok");
-                                    personInfo.setDate(date);
-                                }
-                            }else if (month % 2 == 1){
-                                if ((1 <= day) && (day <= 31)){
-                                    Log.d("myTag", "odd ok");
-                                    personInfo.setDate(date);
-                                }
-                            }
-                        }
 
-                    }
-
-                }
-                Log.d("myTag", "date from obj is : "+personInfo.getDate());
-                */
                 currentInput = "Neck";
                 personInfo.setNeck(neckText.getText().toString());
 
@@ -142,9 +111,6 @@ public class AddDetail extends AppCompatActivity {
             e.printStackTrace();
         }
         finish();
-        /*
-        Intent intent = new Intent(this, MainActivity.class);
-        startActivity(intent);*/
     }
 
     public void delete(View view) {
@@ -153,19 +119,39 @@ public class AddDetail extends AppCompatActivity {
 
     private void saveInFile() {
         try {
-            FileOutputStream fos = openFileOutput("file.sav", Context.MODE_APPEND);
+            FileOutputStream fos = openFileOutput("file.sav", Context.MODE_PRIVATE);
             BufferedWriter out = new BufferedWriter(new OutputStreamWriter(fos));
 
             Gson gson = new Gson();
             gson.toJson(personInfo, out);
             out.flush();
-
+            Log.d("myTag","saveInFile Done");
             fos.close();
         } catch (FileNotFoundException e) {
             // TODO: Handle the Exception properly later
             throw new RuntimeException();
         } catch (IOException e) {
             e.printStackTrace();
+        }
+    }
+
+    private void loadFromFile() {
+        try {
+            FileInputStream fis = openFileInput("file.sav");
+            Log.d("myTag",fis.toString());
+            BufferedReader in = new BufferedReader(new InputStreamReader(fis));
+            Log.d("myTag",in.toString());
+            Gson gson = new Gson();
+
+            //Taken from http://stackoverflow.com/questions/12384064/gson-convert-from-json-to-a-typed-arraylistt
+            //2017-01-24 18:19
+            Type listType = new TypeToken<ArrayList<PersonInfo>>(){}.getType();
+            Log.d("myTag",listType.toString());
+            infoArrayList = gson.fromJson(in, listType);
+            Log.d("myTag","wtf");
+
+        } catch (FileNotFoundException e) {
+            infoArrayList = new ArrayList<PersonInfo>();
         }
     }
 }
