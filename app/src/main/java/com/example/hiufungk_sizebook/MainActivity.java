@@ -47,6 +47,24 @@ public class MainActivity extends AppCompatActivity {
         oldInfoList = (ListView) findViewById(R.id.InfoList);
         registerForContextMenu(oldInfoList);
 
+        //http://stackoverflow.com/questions/20922036/android-cant-call-setonitemclicklistener-from-a-listview
+        //2017-02-02
+        oldInfoList.setOnItemClickListener(
+                new AdapterView.OnItemClickListener() {
+                    @Override
+                    public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+
+                        Intent intent = new Intent(view.getContext(), ViewDetails.class);
+                        PersonInfo selected = infoArrayList.get(position);
+                        Bundle bundle = selected.toBundle();
+
+                        intent.putExtras(bundle);
+                        startActivity(intent);
+
+                    }
+
+
+                });
     }
 
     @Override
@@ -62,6 +80,17 @@ public class MainActivity extends AppCompatActivity {
     public boolean onContextItemSelected(MenuItem item) {
         AdapterView.AdapterContextMenuInfo info = (AdapterView.AdapterContextMenuInfo) item.getMenuInfo();
         switch(item.getItemId()){
+            case R.id.edit_id:
+                //http://stackoverflow.com/questions/8452526/android-can-i-use-putextra-to-pass-multiple-values
+                Log.d("myTag","edit case");
+                Intent intent = new Intent(this, AddDetail.class);
+
+                PersonInfo selected = infoArrayList.get(info.position);
+                Bundle bundle = selected.toBundle();
+                bundle.putInt("current_pos",info.position);
+
+                intent.putExtras(bundle);
+                startActivity(intent);
             case R.id.delete_id:
                 infoArrayList.remove(info.position);
                 adapter.notifyDataSetChanged();
@@ -71,34 +100,6 @@ public class MainActivity extends AppCompatActivity {
                 Integer size = infoArrayList.size();
                 countText.setText(String.format ("%d", size));
                 return true;
-            case R.id.edit_id:
-                //http://stackoverflow.com/questions/8452526/android-can-i-use-putextra-to-pass-multiple-values
-                Log.d("myTag","edit case");
-                Intent intent = new Intent(this, AddDetail.class);
-
-                /*
-                Bundle bundle = new Bundle();
-                PersonInfo selected = infoArrayList.get(info.position);
-                Log.d("myTag","selected: "+selected.getName());
-
-                bundle.putInt("current_pos",info.position);
-                bundle.putString("current_name",selected.getName());
-                bundle.putString("current_date",selected.getDate());
-                bundle.putString("current_neck",String.valueOf(selected.getNeck()));
-                bundle.putString("current_bust",String.valueOf(selected.getBust()));
-                bundle.putString("current_chest",String.valueOf(selected.getChest()));
-                bundle.putString("current_waist",String.valueOf(selected.getWaist()));
-                bundle.putString("current_hip",String.valueOf(selected.getHip()));
-                bundle.putString("current_inseam",String.valueOf(selected.getInseam()));
-                bundle.putString("current_comment",selected.getComment());
-                */
-
-                PersonInfo selected = infoArrayList.get(info.position);
-                Bundle bundle = selected.toBundle();
-                bundle.putInt("current_pos",info.position);
-
-                intent.putExtras(bundle);
-                startActivity(intent);
             default:
                 return super.onContextItemSelected(item);
         }
@@ -117,8 +118,6 @@ public class MainActivity extends AppCompatActivity {
         Integer size = infoArrayList.size();
         countText.setText(String.format ("%d", size));
         adapter = new ArrayAdapter<PersonInfo>(this, R.layout.list_item, infoArrayList); //view,dataArray
-        //Log.d("myTag",adapter.toString());
-        //Log.d("myTag",oldInfoList.toString());
         oldInfoList.setAdapter(adapter);
     }
 
@@ -175,5 +174,6 @@ public class MainActivity extends AppCompatActivity {
             e.printStackTrace();
         }
     }
+
 
 }

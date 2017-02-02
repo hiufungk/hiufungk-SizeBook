@@ -15,9 +15,10 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".AddDetail"
-            android:label="@string/add_detail_name">
-        </activity>
+        <activity
+            android:name=".AddDetail"
+            android:label="@string/add_detail_name"></activity>
+        <activity android:name=".ViewDetails"></activity>
     </application>
 
 </manifest>
