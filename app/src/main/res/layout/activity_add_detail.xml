@@ -15,6 +15,7 @@
         android:layout_height="match_parent"
         android:orientation="vertical">
 
+        <!-- http://stackoverflow.com/questions/14488060/forcing-edittext-to-only-accept-values-of-numbers-decimals-plus-and-minus-si!-->
         <!-- http://stackoverflow.com/questions/5174481/android-edittext-done-instead-of-enter-or-word-wrap-instead-of-multi-line !-->
         <EditText android:id="@+id/inputName"
             android:layout_weight="1"
@@ -35,42 +36,42 @@
             android:layout_width="match_parent"
             android:layout_height="60dp"
             android:hint="@string/input_neck"
-            android:inputType="textEmailAddress|textEmailSubject"/>
+            android:inputType="numberDecimal"/>
 
         <EditText android:id="@+id/inputBust"
             android:layout_weight="1"
             android:layout_width="match_parent"
             android:layout_height="60dp"
             android:hint="@string/input_bust"
-            android:inputType="textEmailAddress|textEmailSubject"/>
+            android:inputType="numberDecimal"/>
 
         <EditText android:id="@+id/inputChest"
             android:layout_weight="1"
             android:layout_width="match_parent"
             android:layout_height="60dp"
             android:hint="@string/input_chest"
-            android:inputType="textEmailAddress|textEmailSubject"/>
+            android:inputType="numberDecimal"/>
 
         <EditText android:id="@+id/inputWaist"
             android:layout_weight="1"
             android:layout_width="match_parent"
             android:layout_height="60dp"
             android:hint="@string/input_waist"
-            android:inputType="textEmailAddress|textEmailSubject"/>
+            android:inputType="numberDecimal"/>
 
         <EditText android:id="@+id/inputHip"
             android:layout_weight="1"
             android:layout_width="match_parent"
             android:layout_height="60dp"
             android:hint="@string/input_hip"
-            android:inputType="textEmailAddress|textEmailSubject"/>
+            android:inputType="numberDecimal"/>
 
         <EditText android:id="@+id/inputInseam"
             android:layout_weight="1"
             android:layout_width="match_parent"
             android:layout_height="60dp"
             android:hint="@string/input_inseam"
-            android:inputType="textEmailAddress|textEmailSubject"/>
+            android:inputType="numberDecimal"/>
 
         <EditText android:id="@+id/inputComment"
             android:layout_weight="1"
@@ -89,15 +90,7 @@
             android:id="@+id/button"
             android:onClick="submit" />
 
-        <Button
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="@string/delete_button"
-            android:layout_alignParentTop="true"
-            android:layout_alignParentRight="true"
-            android:layout_alignParentEnd="true"
-            android:id="@+id/del_button"
-            android:onClick="delete" />
+
     </LinearLayout>
 
 </ScrollView>

@@ -115,9 +115,6 @@ public class AddDetail extends AppCompatActivity {
         finish();
     }
 
-    public void delete(View view) {
-
-    }
 
     private void saveInFile() {
         try {
