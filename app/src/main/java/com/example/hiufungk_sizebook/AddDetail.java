@@ -58,7 +58,7 @@ public class AddDetail extends AppCompatActivity {
         edit_mode = 0;
         if (bundle != null){
             edit_mode = 1; //turn on edit mode
-            Log.d("myTag",bundle.toString());
+            Log.d("myTag edit",bundle.toString());
             pos = bundle.getInt("current_pos");
             String name_string = bundle.getString("current_name");
             String date_string = bundle.getString("current_date");
@@ -139,11 +139,15 @@ public class AddDetail extends AppCompatActivity {
                 Toast.makeText(context, "Create Entry success", duration).show();
 
                 loadFromFile();
+
                 if (edit_mode == 0) {
                     infoArrayList.add(personInfo);
                 }else {
                     infoArrayList.set(pos, personInfo);
                 }
+
+
+                //infoArrayList.add(personInfo);
                 saveInFile();
             }
 

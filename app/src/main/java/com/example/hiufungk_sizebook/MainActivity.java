@@ -91,6 +91,7 @@ public class MainActivity extends AppCompatActivity {
 
                 intent.putExtras(bundle);
                 startActivity(intent);
+                return true;
             case R.id.delete_id:
                 infoArrayList.remove(info.position);
                 adapter.notifyDataSetChanged();
