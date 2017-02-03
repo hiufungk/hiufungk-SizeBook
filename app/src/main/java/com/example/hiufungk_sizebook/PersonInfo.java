@@ -85,7 +85,7 @@ public class PersonInfo {
                 Log.d("myTag", "year is: " + year);
                 Integer month = Integer.parseInt(parts[1]);
                 Integer day = Integer.parseInt(parts[2]);
-                if ((year < 1900) || (year > 9999)) {
+                if ((year < 1000) || (year > 9999)) {
                     throw new InputDateException();
                 }
                 if ((month < 1) || (month > 12)) {

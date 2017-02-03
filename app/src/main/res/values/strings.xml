@@ -16,14 +16,15 @@
     <string name="info_count_word">Number of records:   </string>
     <string name="info_count">1234</string>
     <string name="nameDisplay">Name: </string>
-    <string name="dateDisplay">Date: </string>
-    <string name="neckDisplay">Neck size (circumference): </string>
-    <string name="bustDisplay">Bust size (circumference): </string>
-    <string name="chestDisplay">Chest size (circumference): </string>
-    <string name="waistDisplay">Waist size (circumference): </string>
-    <string name="hipDisplay">Hip size (circumference): </string>
-    <string name="inseamDisplay">Inseam size (length): </string>
+    <string name="dateDisplay">Date (yyyy-mm-dd): </string>
+    <string name="neckDisplay">Neck size (circumference in inches): </string>
+    <string name="bustDisplay">Bust size (circumference in inches): </string>
+    <string name="chestDisplay">Chest size (circumference in inches): </string>
+    <string name="waistDisplay">Waist size (circumference in inches): </string>
+    <string name="hipDisplay">Hip size (circumference in inches): </string>
+    <string name="inseamDisplay">Inseam size (length in inches): </string>
     <string name="commentDisplay">Comment: </string>
+    <string name="None">None</string>
 
 
 </resources>

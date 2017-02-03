@@ -29,7 +29,7 @@
             android:layout_width="match_parent"
             android:layout_height="60dp"
             android:hint="@string/input_date"
-            android:inputType="textEmailAddress|textEmailSubject"/>
+            android:inputType="textEmailAddress|textEmailSubject|numberSigned"/>
 
         <EditText android:id="@+id/inputNeck"
             android:layout_weight="1"
