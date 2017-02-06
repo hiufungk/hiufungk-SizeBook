@@ -17,6 +17,7 @@ public class ViewDetails extends AppCompatActivity {
     private TextView inseamDisplay;
     private TextView commentDisplay;
 
+    //setup TextView
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -32,6 +33,7 @@ public class ViewDetails extends AppCompatActivity {
         commentDisplay = (TextView) findViewById(R.id.commentDisplay);
     }
 
+    //get intent, load all info into corresponding field
     protected void onStart(){
         super.onStart();
         //String test = "testing name";

@@ -49,6 +49,7 @@ public class MainActivity extends AppCompatActivity {
 
         //http://stackoverflow.com/questions/20922036/android-cant-call-setonitemclicklistener-from-a-listview
         //2017-02-02
+        //when click an item in list
         oldInfoList.setOnItemClickListener(
                 new AdapterView.OnItemClickListener() {
                     @Override
@@ -67,6 +68,8 @@ public class MainActivity extends AppCompatActivity {
                 });
     }
 
+    //http://stackoverflow.com/questions/20922036/android-cant-call-setonitemclicklistener-from-a-listview
+    //2017-02-02
     @Override
     public void onCreateContextMenu(ContextMenu menu, View v,
                                     ContextMenu.ContextMenuInfo menuInfo) {
@@ -76,10 +79,13 @@ public class MainActivity extends AppCompatActivity {
     }
 
     //https://www.youtube.com/watch?v=Pq9YQl0nfEk
+    //2017-02-02
+    //edit or delete selected person
     @Override
     public boolean onContextItemSelected(MenuItem item) {
         AdapterView.AdapterContextMenuInfo info = (AdapterView.AdapterContextMenuInfo) item.getMenuInfo();
         switch(item.getItemId()){
+            //store selected person info, store to bundle and pass to add detail activity
             case R.id.edit_id:
                 //http://stackoverflow.com/questions/8452526/android-can-i-use-putextra-to-pass-multiple-values
                 Log.d("myTag","edit case");
@@ -92,6 +98,7 @@ public class MainActivity extends AppCompatActivity {
                 intent.putExtras(bundle);
                 startActivity(intent);
                 return true;
+            //remove selected person
             case R.id.delete_id:
                 infoArrayList.remove(info.position);
                 adapter.notifyDataSetChanged();
@@ -108,7 +115,7 @@ public class MainActivity extends AppCompatActivity {
     }
 
 
-
+    //update count and list view
     @Override
     protected void onStart() {
         // TODO Auto-generated method stub
@@ -129,6 +136,7 @@ public class MainActivity extends AppCompatActivity {
         startActivity(intent);
     }
 
+    /** Called when the user clicks the clear button, removes all entries*/
     public void clearAll(View view) {
         infoArrayList.clear();
         adapter = new ArrayAdapter<PersonInfo>(this, R.layout.list_item, infoArrayList);
@@ -139,7 +147,8 @@ public class MainActivity extends AppCompatActivity {
         saveInFile();
     }
 
-
+    //load data from file using gson,json
+    //if file not found, create new ArrayList<PersonInfo>
     private void loadFromFile() {
         try {
             FileInputStream fis = openFileInput("file.sav");
@@ -158,6 +167,7 @@ public class MainActivity extends AppCompatActivity {
         }
     }
 
+    //save data to file and load to infoArrayList
     private void saveInFile() {
         try {
             FileOutputStream fos = openFileOutput("file.sav", Context.MODE_PRIVATE);

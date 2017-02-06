@@ -161,7 +161,7 @@ public class PersonInfo {
                     throw new InputNumberException();
                 }
                 //taken from http://stackoverflow.com/questions/153724/how-to-round-a-number-to-n-decimal-places-in-java
-                ////2017-01-28 16:42
+                //2017-01-28 16:42
                 this.chest = (double) Math.round(chestNum * 10d) / 10d;
             }
         }catch (NumberFormatException e){
@@ -250,6 +250,7 @@ public class PersonInfo {
         return outStr;
     }
 
+    //store all person attribute to a bundle for passing intent
     public Bundle toBundle(){
         Bundle bundle = new Bundle();
         bundle.putString("current_name",this.getName());

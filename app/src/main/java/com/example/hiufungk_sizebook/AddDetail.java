@@ -33,6 +33,8 @@ public class AddDetail extends AppCompatActivity {
     private ArrayList<PersonInfo> infoArrayList;
     private int edit_mode = 0; //0= create new, 1=edit
     private int pos; //index of element for edit
+
+    //setup EditText
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -48,6 +50,8 @@ public class AddDetail extends AppCompatActivity {
         commentText = (EditText) findViewById(R.id.inputComment);
     }
 
+    //get intent, check if in edit mode or not
+    //if in edit mode -> put existing info to corresponding field
     protected void onStart(){
         super.onStart();
         //String test = "testing name";
@@ -95,6 +99,12 @@ public class AddDetail extends AppCompatActivity {
 
     }
 
+    //called when click the submit button
+    //store each field in personInfo object
+    //if in edit mode, replace object in ArrayList
+    //if not in edit mode, append object in ArrayList
+    //then save to file
+    //use toast to display error message
     public void submit(View view) {
 
         try {
@@ -172,7 +182,7 @@ public class AddDetail extends AppCompatActivity {
     }
 
 
-
+    //save data to file and load to infoArrayList
     private void saveInFile() {
         try {
             FileOutputStream fos = openFileOutput("file.sav", Context.MODE_PRIVATE);
@@ -191,7 +201,8 @@ public class AddDetail extends AppCompatActivity {
         }
     }
 
-    //store info from file to infoArrayList
+    //load data from file using gson,json
+    //if file not found, create new ArrayList<PersonInfo>
     private void loadFromFile() {
         try {
             FileInputStream fis = openFileInput("file.sav");
